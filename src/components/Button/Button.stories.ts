@@ -7,6 +7,7 @@ const meta = {
   component: Button,
   parameters: {
     layout: 'centered',
+    panelPosition: 'right'
   },
   tags: ['autodocs'],
   argTypes: {
@@ -18,29 +19,12 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
+export const CustomButton: Story = {
   args: {
-    primary: true,
-    label: 'Button Primary',
-  },
-};
-
-export const Secondary: Story = {
-  args: {
-    label: 'Button Secondary',
-  },
-};
-
-export const Large: Story = {
-  args: {
-    size: 'large',
-    label: 'Button Large',
-  },
-};
-
-export const Small: Story = {
-  args: {
-    size: 'small',
-    label: 'Button Small',
+    label: 'Button Example',
+    primaryType: 'primary',
+    size: 'medium',
+    corners: 'standard',
+    isIcon: false
   },
 };

@@ -6,14 +6,23 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <>
         <Button
             label='Test'
-            primary={true}
+            primaryType='primary'
             size='small'
             onClick={()=>console.log('hello')}
+            corners='round'
         />
         <div style={{margin: 20}}></div>
         <Button
-            label='Secondary'
-            primary={false}
+            label='s'
+            primaryType='secondary'
+            size='medium'
+            onClick={()=>console.log('hello')}
+            corners='square'
+        />
+        <div style={{margin: 20}}></div>
+        <Button
+            label='Secondary Big Button'
+            primaryType='transparent'
             size='large'
             onClick={()=>console.log('hello')}
         />

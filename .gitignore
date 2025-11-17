@@ -1,6 +1,5 @@
 node_modules
 .idea
-.storybook
 package-lock.json
 *-bak.*
 *storybook.log

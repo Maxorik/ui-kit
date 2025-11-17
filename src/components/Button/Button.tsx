@@ -2,27 +2,30 @@ import React from 'react';
 import './button.scss';
 
 export interface ButtonProps {
-    primary?: boolean;
+    primaryType: 'primary' | 'secondary' | 'transparent';
     backgroundColor?: string;
     size?: 'small' | 'medium' | 'large';
     corners?: 'square' | 'standard' | 'round';
     label: string;
+    isIcon?: boolean;
     onClick?: () => void;
 }
 
 /** Primary UI component for user interaction */
 export const Button = ({
-    primary = false,
+    primaryType = 'primary',
     size = 'medium',
+    corners = 'standard',
+    isIcon = false,
     backgroundColor,
     label,
     ...props
 }: ButtonProps) => {
-    const mode = primary ? 'kit-button--primary' : 'kit-button--secondary';
+    const iconCls = isIcon ? 'kit-btn--icon' : '';
     return (
         <button
             type="button"
-            className={['kit-button', `kit-button--${size}`, mode].join(' ')}
+            className={['kit-btn', `kit-btn--${size}`, `kit-btn--${corners}`, `kit-btn--${primaryType}`, iconCls].join(' ')}
             style={{ backgroundColor }}
             {...props}
         >
