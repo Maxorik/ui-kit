@@ -11,7 +11,7 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
-    backgroundColor: { control: 'color' },
+    // backgroundColor: { control: 'color' },
   },
   args: { onClick: fn() },
 }
@@ -22,9 +22,8 @@ type Story = StoryObj<typeof meta>;
 export const CustomButton: Story = {
   args: {
     label: 'Button Example',
-    primaryType: 'primary',
+    type: 'primary',
     size: 'medium',
-    corners: 'standard',
-    isIcon: false
+    corners: 'standard'
   },
 };
