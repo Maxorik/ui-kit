@@ -1,44 +1,37 @@
 import React from 'react';
-import './button.scss';
+import './icon_button.scss';
 
-export interface ButtonProps {
+export interface IconButtonProps {
     type: 'primary' | 'transparent' | 'secondary';
     size?: 'small' | 'medium' | 'large';
     corners?: 'square' | 'standard' | 'round';
-    disabled?: boolean,
-    text: string;
-    onClick?: (e?: MouseEvent) => void;
-    cls?: string;
+    label: string;
+    onClick?: () => void;
+    style?: {};
 }
 
 /** Primary UI component for user interaction */
-export const Button = ({
+export const IconButton = ({
     type = 'primary',
     size = 'medium',
     corners = 'standard',
-    cls = '',
-    disabled = false,
-    text,
-    onClick,
+    style,
+    label,
     ...props
-}: ButtonProps) => {
-    const disabledCls = disabled ? 'kit-btn--disabled' : '';
-
+}: IconButtonProps) => {
     return (
         <button
             type="button"
-            onClick={disabled ? null : onClick}
             className={[
                 'kit-btn',
                 `kit-btn--${size}`,
                 `kit-btn--${corners}`,
-                `kit-btn--${type}`,
-                disabledCls,
-                cls
+                `kit-btn--${type}`
             ].join(' ')}
+            style={ style }
             {...props}
         >
-            {text}
+            {label}
         </button>
     );
 };

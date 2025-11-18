@@ -12,7 +12,7 @@
   line-height: 1;
   min-width: 64px;
   font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  transition: background-color 0.3s ease;
+  transition: background-color, opacity 0.3s ease;
   margin: 8px;    // !!! test
   &:active {
     transform: translateY(0.5px);
@@ -73,6 +73,14 @@
 }
 .kit-btn--square {
   border-radius: 0;
+}
+
+// disabled
+.kit-btn--disabled {
+  cursor: auto;
+  opacity: 0.5;
+  pointer-events: none;
+  user-select: none;
 }
 
 // icons
