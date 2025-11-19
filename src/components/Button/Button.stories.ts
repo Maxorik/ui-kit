@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { StoryObj } from '@storybook/react-vite';
 import { Button } from './Button';
 
 const meta = {
@@ -8,9 +8,16 @@ const meta = {
     layout: 'centered'
   },
   tags: ['autodocs'],
-  argTypes: {
-    // backgroundColor: { control: 'color' },
-  },
+  decorators: [
+    (Story) => {
+      const script = document.createElement('script')
+      script.src = '/style_setter.js'
+      script.type = 'module'
+      document.head.appendChild(script)
+
+      return Story()
+    },
+  ],
 }
 
 export default meta;
@@ -24,7 +31,7 @@ export const CustomButton: Story = {
     corners: 'standard',
     disabled: false,
     cls: '',
-    onClick: () => console.log('123456')
+    onClick: () => console.log('CustomButton')
   },
 };
 
@@ -36,18 +43,18 @@ export const IconButton: Story = {
     corners: 'standard',
     disabled: false,
     cls: '',
-    onClick: () => console.log('sdfg'),
+    onClick: () => console.log('IconButton'),
     iconPath: 'assets/alert-square.svg',
-    labelAlign: 'right'
+    labelAlign: 'bottom'
   },
 };
 
 export const Icon: Story = {
   args: {
-    onClick: () => console.log('sdfg'),
+    onClick: () => console.log('Icon'),
     iconPath: 'assets/alert-square.svg',
     type: 'transparent',
-    size: 'medium',
+    size: 'large',
     corners: 'round',
     disabled: false,
     cls: '',

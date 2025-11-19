@@ -1,11 +1,11 @@
 
 const settings = {
     /** Основные цвета интерфейса управления */
-    primaryColor: '#091249',
-    secondaryColor: '#fff',
-    hoverColor: '#94becc',
+    primaryColor: '#201f26',
+    secondaryColor: '#83efef',
+    hoverColor: '#0C1128AD',
 }
 
-document.documentElement.style.setProperty('--primary-btn-color', settings['primaryBtnColor']);
-document.documentElement.style.setProperty('--secondary-btn-color', settings['secondaryBtnColor']);
-document.documentElement.style.setProperty('--hover-btn-color', settings['hoverBtnColor']);
+document.documentElement.style.setProperty('--primary-btn-color', settings.primaryColor);
+document.documentElement.style.setProperty('--secondary-btn-color', settings.secondaryColor);
+document.documentElement.style.setProperty('--hover-btn-color', settings.hoverColor);
