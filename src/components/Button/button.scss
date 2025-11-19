@@ -1,8 +1,4 @@
-:root {
-  --primary-btn-color: #069684;
-  --secondary-btn-color: #fff;
-  --hover-btn-color: #c06329;
-}
+@import '../../main.scss';
 
 .kit-btn {
   display: inline-block;
@@ -10,13 +6,23 @@
   border: 0;
   font-weight: 700;
   line-height: 1;
-  min-width: 64px;
-  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: var(--font-family);
   transition: background-color 0.3s ease;
-  margin: 8px;    // !!! test
+  padding: 8px 16px;
+  &.kit-btn--icon {
+    padding: 8px;
+  }
   &:active {
     transform: translateY(0.5px);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) inset;
+  }
+  &.kit-icon {
+    pointer-events: none;
+  }
+  &.kit-btn--disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    user-select: none;
   }
 }
 
@@ -24,6 +30,9 @@
 .kit-btn--primary {
   background-color: var(--primary-btn-color);
   color: var(--secondary-btn-color);
+  & > div > .kit-btn--svg {
+    background-color: var(--secondary-btn-color);
+  }
   &:hover {
     background-color: var(--hover-btn-color);
   }
@@ -32,18 +41,30 @@
   border: 1px var(--primary-btn-color) solid;
   background-color: transparent;
   color: var(--primary-btn-color);
+  & > div > .kit-btn--svg {
+    background-color: var(--primary-btn-color);
+  }
   &:hover {
     background-color: var(--hover-btn-color);
     color: var(--secondary-btn-color);
     border: 1px var(--hover-btn-color) solid;
+    & > div > .kit-btn--svg {
+      background-color: var(--secondary-btn-color);
+    }
   }
 }
 .kit-btn--transparent {
   border: none;
   background-color: transparent;
   color: var(--primary-btn-color);
+  & > div > .kit-btn--svg {
+    background-color: var(--primary-btn-color);
+  }
   &:hover {
     color: var(--hover-btn-color);
+    & > div > .kit-btn--svg {
+      background-color: var(--hover-btn-color);
+    }
   }
   &:active {
     box-shadow: unset;
@@ -52,16 +73,49 @@
 
 // size
 .kit-btn--small {
-  padding: 10px 16px;
   font-size: 12px;
+  & > div > .kit-btn--svg {
+    width: 20px;
+    height: 20px;
+  }
+  &:not(.kit-btn--icon) > .kit-container--h > .kit-btn--svg {
+    width: 16px;
+    height: 16px;
+  }
+  &:not(.kit-btn--icon) > .kit-container--v > .kit-btn--svg {
+    width: 24px;
+    height: 24px;
+  }
 }
 .kit-btn--medium {
-  padding: 11px 20px;
   font-size: 14px;
+  & > div > .kit-btn--svg {
+    width: 24px;
+    height: 24px;
+  }
+  &:not(.kit-btn--icon) > .kit-container--h > .kit-btn--svg {
+    width: 20px;
+    height: 20px;
+  }
+  &:not(.kit-btn--icon) > .kit-container--v > .kit-btn--svg {
+    width: 28px;
+    height: 28px;
+  }
 }
 .kit-btn--large {
-  padding: 12px 24px;
   font-size: 16px;
+  & > div > .kit-btn--svg {
+    width: 32px;
+    height: 32px;
+  }
+  &:not(.kit-btn--icon) > .kit-container--h > .kit-btn--svg {
+    width: 24px;
+    height: 24px;
+  }
+  &:not(.kit-btn--icon) > .kit-container--v > .kit-btn--svg {
+    width: 32px;
+    height: 32px;
+  }
 }
 
 // border-radius
@@ -77,11 +131,38 @@
 
 // icons
 .kit-btn--icon {
-  min-width: 44px;
-  width: 44px;
-  height: 44px;
+  //min-width: 44px;
+  //width: 44px;
+  //height: 44px;
   padding: 8px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+.kit-btn--svg {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+}
+
+// вынести в контейнеры
+.kit-container--v {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: fit-content;
+  gap: 8px;
+}
+.kit-container--h {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: fit-content;
+  gap: 8px;
 }
