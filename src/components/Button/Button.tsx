@@ -1,4 +1,5 @@
 import React from 'react';
+import { Box } from "../Container/Box";
 import './button.scss';
 
 /**
@@ -56,10 +57,7 @@ export const Button = ({
     onClick,
     ...props
 }: ButtonProps) => {
-    const disabledCls = disabled ? 'kit-btn--disabled' : '';
     const isIconCls = iconPath != '' && text === '' ? 'kit-btn--icon' : '';
-    const isStaticIconCls = staticIcon ? 'kit-icon' : '';
-    const textAlignCls = labelAlign === 'right' || labelAlign === 'left' ? 'kit-btn--row' : 'kit-btn--column';
 
     let Content;
     const IconContainer = () => (iconPath ? <div
@@ -72,11 +70,11 @@ export const Button = ({
 
     /** текст + иконка */
     switch(labelAlign) {
-        case 'right': Content = () => (<div className='kit-container--h'><IconContainer />{text}</div>); break;
-        case 'left': Content = () => (<div className='kit-container--h'>{text}<IconContainer /></div>); break;
-        case 'top': Content = () => (<div className='kit-container--v'>{text}<IconContainer /></div>); break;
-        case 'bottom': Content = () => (<div className='kit-container--v'><IconContainer />{text}</div>); break;
-        default: Content = () => (<div className='kit-container--h'>{ isIconCls ? <IconContainer /> : text}</div>); break;
+        case 'right': Content = () => (<Box direction='row'><IconContainer />{text as string}</Box>); break;
+        case 'left': Content = () => (<Box direction='row'>{text as string}<IconContainer /></Box>); break;
+        case 'top': Content = () => (<Box direction='column'>{text as string}<IconContainer /></Box>); break;
+        case 'bottom': Content = () => (<Box direction='column'><IconContainer />{text as string}</Box>); break;
+        default: Content = () => (<Box direction='row'>{ isIconCls ? <IconContainer /> : text as string}</Box>); break;
     }
 
     return (
@@ -88,10 +86,9 @@ export const Button = ({
                 `kit-btn--${size}`,
                 `kit-btn--${corners}`,
                 `kit-btn--${type}`,
-                isStaticIconCls,
-                disabledCls,
+                disabled && 'kit-btn--disabled',
+                staticIcon && 'kit-icon',
                 isIconCls,
-                textAlignCls,
                 cls
             ].join(' ')}
             {...props}
