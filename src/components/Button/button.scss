@@ -123,13 +123,13 @@
 
 // border-radius
 .kit-btn--standard {
-  border-radius: 0.65em;
+  border-radius: var(--corners-standard);
 }
 .kit-btn--round {
-  border-radius: 3em;
+  border-radius: var(--corners-round);
 }
 .kit-btn--square {
-  border-radius: 0;
+  border-radius: var(--corners-square);
 }
 
 // icons

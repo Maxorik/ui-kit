@@ -29,10 +29,10 @@ export interface BoxProps {
     gap?: number;
 
     /** Внешние отступы */
-    margin?: [];
+    margin?: number[];
 
     /** Внутренние отступы */
-    padding?: [];
+    padding?: number[];
 
     /** Родительский тег для семантики */
     parent?: 'header' | 'footer' | 'article' | 'section' | 'main';

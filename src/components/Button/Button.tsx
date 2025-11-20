@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from "../Container/Box";
+import { Box } from "../Container";
 import './button.scss';
 
 /**

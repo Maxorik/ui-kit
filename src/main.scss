@@ -2,8 +2,16 @@
   /** текст */
   --font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
+  /** основной фон */
+  --bg-color: #fff;
+
   /** кнопки */
   --primary-btn-color: #069684;
   --secondary-btn-color: #fff;
   --hover-btn-color: #c06329;
+
+  /** углы элементов */
+  --corners-standard: 0.65em;
+  --corners-round: 3em;
+  --corners-square: 0;
 }
