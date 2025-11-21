@@ -6,9 +6,8 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "vite --force",
-    "build": "rimraf ./build && vite build",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build": "storybook build && ren storybook-static docs && git add docs",
+    "storybook": "storybook dev -p 6006"
   },
   "keywords": [],
   "author": "Maxorik",
