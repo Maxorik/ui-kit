@@ -33,7 +33,7 @@ export interface ButtonProps {
     /** Дополнительные классы */
     cls?: string;
 
-    /** Путь до иконки */
+    /** Путь до иконки из assets */
     iconPath?: string;
 
     /** Расположение текста относительно иконки */
@@ -63,8 +63,8 @@ export const Button = ({
     const IconContainer = () => (iconPath ? <div
         className='kit-btn--svg'
         style={{
-            maskImage: `url(${iconPath})`,
-            WebkitMaskImage: `url(${iconPath})`
+            maskImage: `url(assets/${iconPath})`,
+            WebkitMaskImage: `url(assets/${iconPath})`
         }}
     /> : null);
 
@@ -86,8 +86,8 @@ export const Button = ({
                 `kit-btn--${size}`,
                 `kit-btn--${corners}`,
                 `kit-btn--${type}`,
-                disabled && 'kit-btn--disabled',
-                staticIcon && 'kit-icon',
+                disabled ? 'kit-btn--disabled' : '',
+                staticIcon ? 'kit-icon' : '',
                 isIconCls,
                 cls
             ].join(' ')}

@@ -23,6 +23,13 @@
   min-height: 200px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.15);
   animation: fadeInModal 0.2s ease-out;
+  & > div {
+    width: auto;
+  }
+}
+
+.kit-modal-close {
+  margin: -4px -16px 0 0;
 }
 
 // border-radius

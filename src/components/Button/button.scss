@@ -12,9 +12,6 @@
   & > .kit-box {
     width: fit-content;
   }
-  &.kit-btn--icon {
-    padding: 8px;
-  }
   &:active {
     transform: translateY(0.5px);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) inset;

@@ -2,7 +2,7 @@ import type { StoryObj } from '@storybook/react-vite';
 import { Button } from './Button';
 
 const meta = {
-  title: 'Example/Button',
+  title: 'Example Button',
   component: Button,
   parameters: {
     layout: 'centered'
@@ -44,7 +44,7 @@ export const IconButton: Story = {
     disabled: false,
     cls: '',
     onClick: () => console.log('IconButton'),
-    iconPath: 'assets/alert-square.svg',
+    iconPath: 'svg/alert-square.svg',
     labelAlign: 'bottom'
   },
 };
@@ -52,7 +52,7 @@ export const IconButton: Story = {
 export const Icon: Story = {
   args: {
     onClick: () => console.log('Icon'),
-    iconPath: 'assets/alert-square.svg',
+    iconPath: 'svg/alert-square.svg',
     type: 'transparent',
     size: 'large',
     corners: 'round',

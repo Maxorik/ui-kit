@@ -35,7 +35,7 @@ export interface BoxProps {
     padding?: number[];
 
     /** Родительский тег для семантики */
-    parent?: 'header' | 'footer' | 'article' | 'section' | 'main';
+    parent?: 'header' | 'footer' | 'article' | 'section' | 'main' | 'div';
 
     /** Содержимое контейнера **/
     children: ReactNode | string;
@@ -60,8 +60,8 @@ export const Box = ({
     ...props
 }: BoxProps) => {
     const Parent = parent;
-    const margins = margin?.join('px, ') + 'px';
-    const paddings = padding?.join('px, ') + 'px';
+    const margins = margin?.map(m => m + 'px').join(' ');
+    const paddings = padding?.map(m => m + 'px').join(' ');
 
     return(
         <Parent
@@ -73,7 +73,7 @@ export const Box = ({
                 wrapContent && 'kit-box--wrap',
                 cls
             ].join(' ')}
-            style={{ gap: `${gap}px`, margin: margins, padding: paddings }}
+            style={{ gap: `${gap}px`, margin: `${margins}`, padding: `${paddings}` }}
             {...props}
         >
             {children}

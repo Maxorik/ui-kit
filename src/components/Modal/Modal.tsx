@@ -1,5 +1,5 @@
-import React, { ReactNode, useEffect, useRef } from 'react';
-import { Box } from "../Container";
+import React, { ReactNode, useEffect, useRef, useState } from 'react';
+import { Box, Button } from "../index";
 import './modal.scss';
 
 /**
@@ -12,7 +12,7 @@ import './modal.scss';
 
 export interface ModalProps {
     /** Ширина */
-    width?: number;
+    width?: number | 'auto';
 
     /** Углы прямые / Закругленные / Круглые */
     corners?: 'square' | 'standard' | 'round';
@@ -33,7 +33,10 @@ export interface ModalProps {
     isOpen?: boolean;
 
     /** Title */
-    title?: string;
+    title?: string;             // TODO
+
+    /** Кнопка закрытия в углу */
+    closeButton?: boolean;
 }
 
 /** Элемент модалки */
@@ -42,6 +45,7 @@ export const Modal = ({
     corners = 'standard',
     background = 'blackout',
     isOpen = false,
+    closeButton = true,
     title = '',
     cls = '',
     children,
@@ -49,12 +53,23 @@ export const Modal = ({
     ...props
 }: ModalProps) => {
     const overlayRef = useRef<HTMLDivElement | null>(null);
+    const [showModal, setShowModal] = useState(isOpen);
+
+    function handleClose(): void {
+        setShowModal(false);
+        onClose && onClose();
+    }
+
+    /** только для демонстрации в userbook */
+    useEffect(() => {
+        setShowModal(isOpen);
+    }, [isOpen]);
 
     useEffect(() => {
-        if (!isOpen) return;
+        if (!showModal) return;
 
         function handleKeyDown(e) {
-            if (e.key === 'Escape') onClose();
+            if (e.key === 'Escape') handleClose();
         }
 
         // закрытие по Esc
@@ -68,29 +83,43 @@ export const Modal = ({
             document.body.style.overflow = original;
             document.removeEventListener('keydown', handleKeyDown);
         }
-    }, [isOpen, onClose]);
+    }, [showModal, handleClose]);
 
     return(
-        <div
-            className='kit-modal--overlay'
-            onclick={(e) => { if (e.target === overlayRef.current) onClose() }}
-            ref={overlayRef}
-        >
-            <div
-                className={[
-                    'kit-modal',
-                    `kit-modal--${corners}`,
-                    `kit-modal--bg-${background}`,
-                    cls
-                ].join(' ')}
-                style={{ width: !isNaN(width as number) ? `${width}px` : 'fit-content' }}
-                {...props}>
-                <Box padding={[16]} >
-                    { /** TODO шапка, кнопка закрытия */ }
-                    {children}
-                    { /** (необязательные) кнопки управления окном */ }
-                </Box>
-            </div>
-        </div>
+        <>
+            {showModal ? <div
+                className='kit-modal--overlay'
+                onClick={(e) => {
+                    if (e.target === overlayRef.current) handleClose()
+                }}
+                ref={overlayRef}
+            >
+                <div
+                    className={[
+                        'kit-modal',
+                        `kit-modal--${corners}`,
+                        `kit-modal--bg-${background}`,
+                        cls
+                    ].join(' ')}
+                    style={{width: !isNaN(width as number) ? `${width}px` : 'fit-content'}}
+                    {...props}>
+                    <Box padding={[8, 16]} direction='column'>
+                        <Box justify='end' margin={[0, -16]}>
+                            <Button
+                                type='transparent'
+                                size='large'
+                                onClick={handleClose}
+                                iconPath='svg/close.svg'
+                                cls='kit-modal-close'
+                            />
+                        </Box>
+                        <Box justify='start'>
+                            {children}
+                        </Box>
+                        { /** (необязательные) кнопки управления окном */}
+                    </Box>
+                </div>
+            </div> : <></>}
+        </>
     )
 };
