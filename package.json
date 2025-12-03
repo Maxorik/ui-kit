@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "vite --force",
-    "build": "storybook build && ren storybook-static docs && git add docs",
+    "build": "rmdir /s /q docs && storybook build && ren storybook-static docs && git add docs",
     "storybook": "storybook dev -p 6006"
   },
   "keywords": [],
