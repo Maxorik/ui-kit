@@ -4,7 +4,7 @@ const settings = {
     /** Основные цвета интерфейса управления */
     '--primary-btn-color': '#201f26',
     '--secondary-btn-color': '#83efef',
-    '--hover-btn-color': '#0C1128AD',
+    '--hover-btn-color': '#b45aba',
     '--bg-color': '#fff',
 
     /** Углы */
