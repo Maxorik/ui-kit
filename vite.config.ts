@@ -1,8 +1,12 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import dts from 'vite-plugin-dts'
 
 export default defineConfig({
-    plugins: [react()],
+    plugins: [
+        react(),
+        dts({ insertTypesEntry: true })
+    ],
     server: {
       port: 9000
     },
@@ -11,10 +15,16 @@ export default defineConfig({
             entry: "src/components/index.ts",
             name: "velum-ui-kit",
             formats: ["es", "umd"],
-            fileName: (format) => `ui-kit.${format}.js`,
+            fileName: (format) => `index.${format}.js`,
         },
         rollupOptions: {
             external: ["react", "react-dom"],
+            output: {
+                globals: {
+                    react: 'React',
+                    'react-dom': 'ReactDOM'
+                }
+            }
         }
     }
 });
