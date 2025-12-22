@@ -109,7 +109,7 @@ export const Modal = ({
                                 type='transparent'
                                 size='large'
                                 onClick={handleClose}
-                                iconPath='svg/close.svg'
+                                iconPath='svg-lib/cross-svgrepo-com.svg'
                                 cls='kit-modal-close'
                             />
                         </Box>

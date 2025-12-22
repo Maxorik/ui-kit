@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useState, useId} from 'react';
+import { Button } from "../Button";
 import './input.scss';
 
 /**
@@ -45,6 +46,9 @@ export interface InputProps {
     /** Ошибки валидации */
     errorText: string;
 
+    /** Ширина в px */
+    width?: number;
+
     /** Дополнительные классы */
     cls?: string;
 }
@@ -62,22 +66,24 @@ export const Input = ({
     live=false,
     isSearch=false,
     mask,
+    width,
     onChange,
     cls,
     ...props
 }: InputProps) => {
     const [internalValue, setInternalValue] = useState<string | number>(value);
     const [error, setError] = useState<string>('');
+    const inputId = useId();
 
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         let val: string | number = e.target.value;
 
-        if (type === 'numeric') {
-            val = val.replace(/\D/g, ''); // оставляем только цифры
+        if (type === 'number') {
+            val = val.toString().replace(/\D/g, '');
         }
 
         if (mask && !mask.test(val.toString())) {
-            setError(errorText || 'Некорректное значение');
+            setError(errorText || 'Некорректное значение'); // TODO нормальные текстовки
         } else {
             setError('');
         }
@@ -88,6 +94,10 @@ export const Input = ({
             onChange(val);
         }
     };
+
+    const clearInput = () => {
+        setInternalValue('');
+    }
 
     const handleBlur = (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         if (!live && onChange) {
@@ -100,31 +110,63 @@ export const Input = ({
         placeholder,
         onChange: handleChange,
         onBlur: handleBlur,
-        className: `input-field ${cls} ${error ? 'input-error' : ''}`,
+        className: [
+            'kit-input',
+            `kit-input--${corners}`,
+            disabled ? 'kit-input--disabled' : '',
+            error ? 'kit-input--error' : '',
+            cls
+        ].join(' ').trim()
     };
 
     return (
-        <div className="input-wrapper">
-            {label && <label className="input-label">{label}</label>}
-            <div className="input-container" style={{ position: 'relative' }}>
-                {type === 'textarea' ? (
-                    <textarea {...inputProps} />
+        <div className="kit-input--wrapper">
+            { label && <div className='w5rem'>
+                <label
+                    for={ inputId }
+                    className="kit-input--label kit-input-secondary-text"
+                >
+                    { label }
+                </label>
+            </div> }
+            <div
+                className="kit-input--container"
+                style={{ 'width': width ? `${width}px` : 'auto' }}
+            >
+                { type === 'textarea' ? (
+                    <textarea
+                        id={ inputId }
+                        { ...inputProps }
+                    />
                 ) : (
                     <input
-                        {...inputProps}
-                        type={type} 
+                        { ...inputProps }
+                        type={ type }
+                        id={ inputId }
                     />
                 )}
 
-                {isSearch && (
-                    <span className="input-icon" style={{ position: 'absolute', right: 10, top: '50%', transform: 'translateY(-50%)' }}>
-                        🔍
-                    </span>
-                )}
+                <div className='kit-input--icon-container'>
+                    { internalValue && <Button
+                        type='transparent'
+                        iconPath='svg-lib/input-svgrepo-com.svg'
+                        size='small'
+                        onClick={clearInput}
+                        cls='kit-input--icon'
+                    /> }
+                    { isSearch && <Button
+                        type='transparent'
+                        iconPath='svg-lib/search-svgrepo-com.svg'
+                        size='small'
+                        staticIcon={live}
+                        onClick={() => onChange && onChange(internalValue)}
+                        cls='kit-input--icon'
+                    /> }
+                </div>
             </div>
 
-            {bottomText && <div className="input-bottom-text">{bottomText}</div>}
-            {error && <div className="input-error-text">{error}</div>}
+            { !error && bottomText && <div className="kit-input-bottomtext kit-input-secondary-text">{bottomText}</div> }
+            { error && <div className="kit-input-errortext kit-input-secondary-text">{error}</div> }
         </div>
     );
 };

@@ -4,8 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run dev",
-    "dev": "vite --force",
     "build": "rmdir /s /q docs && storybook build && ren storybook-static docs && git add docs",
     "storybook": "storybook dev -p 6006"
   },

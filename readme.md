@@ -1,7 +1,9 @@
 ui-kit (in progress)
 
-preview: https://maxorik.github.io/ui-kit/
+preview: https://uikit.velumweb.ru/
 
 - buttons
+- toggle
+- inputs
 - containers
 - modal window

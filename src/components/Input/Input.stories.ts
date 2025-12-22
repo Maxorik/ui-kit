@@ -23,9 +23,27 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const CustomButton: Story = {
+export const TextField: Story = {
   args: {
-    text: 'Text Input'
+    label: 'Год вашего рождения',
+    value: '2026',
+    type: 'text',
+    bottomText: 'Пишите только цифры',
+    placeholder: 'Год в формате YYYY',
+    errorText: 'Допустимы только цифры',
+    mask: /^[0-9]+$/,
+    width: 300
+  },
+};
+
+export const Search: Story = {
+  args: {
+    value: '',
+    type: 'text',
+    placeholder: 'Найти по имени или году',
+    width: 250,
+    live: true,
+    isSearch: true
   },
 };
 
