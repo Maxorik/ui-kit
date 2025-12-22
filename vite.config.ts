@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import dts from 'vite-plugin-dts'
+import path from 'path';
 
 export default defineConfig({
     plugins: [
@@ -12,8 +13,8 @@ export default defineConfig({
     },
     build: {
         lib: {
-            entry: "src/components/index.ts",
-            name: "velum-ui-kit",
+            entry: path.resolve(__dirname, 'src/components/index.ts'),
+            name: "velumUIkit",
             formats: ["es", "umd"],
             fileName: (format) => `index.${format}.js`,
         },
@@ -25,6 +26,7 @@ export default defineConfig({
                     'react-dom': 'ReactDOM'
                 }
             }
-        }
+        },
+        outDir: 'dist'
     }
 });
