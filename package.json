@@ -1,14 +1,18 @@
 {
   "name": "@velumweb/ui-kit",
   "version": "1.0.0",
-  "description": "",
+  "description": "uikit for velum projects",
   "main": "index.js",
   "module": "dist/index.es.js",
   "scripts": {
     "storybook": "storybook dev -p 6006",
     "build": "vite build && git add dist",
     "build-storybook": "storybook build & ren storybook-static docs && git add docs",
-    "build-all": "npm run build && npm run build-storybook"
+    "build-all": "npm run build && npm run build-storybook",
+    "update-patch": "npm version patch",
+    "update-minor": "npm version minor",
+    "update-bugfix": "update-patch && build-all && npm publish",
+    "update-feature": "update-minor && build-all && npm publish"
   },
   "keywords": [],
   "author": "Maxorik",
