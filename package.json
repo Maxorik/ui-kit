@@ -1,6 +1,6 @@
 {
   "name": "@velumweb/ui-kit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "uikit for velum projects",
   "main": "index.js",
   "style": "dist/style.css",
