@@ -12,7 +12,7 @@
   "scripts": {
     "storybook": "storybook dev -p 6006",
     "build": "vite build && git add dist",
-    "build-storybook": "storybook build & ren storybook-static docs && git add docs",
+    "build-storybook": "storybook build && ren storybook-static docs && copy CNAME docs\\ && git add docs",
     "build-all": "npm run build && npm run build-storybook",
     "update-patch": "npm version patch",
     "update-minor": "npm version minor",

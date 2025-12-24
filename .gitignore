@@ -5,3 +5,4 @@ package-lock.json
 *storybook.log
 pnpm-lock.yaml
 desktop.ini
+storybook-static
