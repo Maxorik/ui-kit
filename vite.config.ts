@@ -6,16 +6,26 @@ import path from 'path';
 export default defineConfig({
     plugins: [
         react(),
-        dts({ insertTypesEntry: true })
+        dts({
+            insertTypesEntry: true,
+            beforeWriteFile: (filePath, content) => {
+                if (filePath.endsWith('style.d.ts')) {
+                    return false;
+                }
+            }
+        })
     ],
     server: {
       port: 9000
     },
     build: {
         lib: {
-            entry: path.resolve(__dirname, 'src/components/index.ts'),
+            entry: {
+                index: path.resolve(__dirname, 'src/components/index.ts'),
+                style: path.resolve(__dirname, 'src/style.ts')
+            },
             name: "velumUIkit",
-            formats: ["es", "umd"],
+            formats: ["es"],
             fileName: (format) => `index.${format}.js`,
         },
         rollupOptions: {

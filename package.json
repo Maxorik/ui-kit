@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "uikit for velum projects",
   "main": "index.js",
+  "style": "dist/style.css",
+  "sideEffects": [
+    "*.css",
+    "*.scss"
+  ],
   "module": "dist/index.es.js",
   "scripts": {
     "storybook": "storybook dev -p 6006",
