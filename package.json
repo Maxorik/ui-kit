@@ -16,8 +16,8 @@
     "build-all": "npm run build && npm run build-storybook",
     "update-patch": "npm version patch",
     "update-minor": "npm version minor",
-    "update-bugfix": "update-patch && build-all && npm publish",
-    "update-feature": "update-minor && build-all && npm publish"
+    "update-bugfix": "npm run update-patch && build-all && npm publish",
+    "update-feature": "npm run update-minor && build-all && npm publish"
   },
   "keywords": [],
   "author": "Maxorik",
