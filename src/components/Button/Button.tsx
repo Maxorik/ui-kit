@@ -2,6 +2,8 @@ import React from 'react';
 import { Box } from "../Container";
 import './button.scss';
 
+import { Icon } from '../../icons/Icon'
+
 /**
  * Компонент кнопки
  * - разные состояния
@@ -33,7 +35,7 @@ export interface ButtonProps {
     /** Дополнительные классы */
     cls?: string;
 
-    /** Путь до иконки из assets */
+    /** Путь до иконки. Если просто название иконки - берется из assets uikit. Иначе берется из родительского проекта */
     iconPath?: string;
 
     /** Расположение текста относительно иконки */
@@ -53,20 +55,15 @@ export const Button = ({
     cls = '',
     text = '',
     iconPath = '',
-    labelAlign = '',
+    labelAlign = 'right',
     onClick,
     ...props
 }: ButtonProps) => {
     const isIconCls = iconPath != '' && text === '' ? 'kit-btn--icon' : '';
 
+    const IconContainer = () => (<Icon path={iconPath} className='kit-btn--svg' />);
+
     let Content;
-    const IconContainer = () => (iconPath ? <div
-        className='kit-btn--svg'
-        style={{
-            maskImage: `url(assets/${iconPath})`,
-            WebkitMaskImage: `url(assets/${iconPath})`
-        }}
-    /> : null);
 
     /** текст + иконка */
     switch(labelAlign) {

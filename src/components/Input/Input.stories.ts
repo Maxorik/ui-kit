@@ -36,6 +36,17 @@ export const TextField: Story = {
   },
 };
 
+export const Required: Story = {
+  args: {
+    label: 'Имя пользователя',
+    value: '',
+    type: 'text',
+    placeholder: 'Введите имя',
+    width: 300,
+    required: true
+  },
+};
+
 export const Search: Story = {
   args: {
     value: '',

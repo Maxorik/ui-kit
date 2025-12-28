@@ -31,7 +31,7 @@
   background-color: var(--primary-btn-color);
   color: var(--secondary-btn-color);
   & > div > .kit-btn--svg {
-    background-color: var(--secondary-btn-color);
+    fill: var(--secondary-btn-color);
   }
   &:hover {
     background-color: var(--hover-btn-color);
@@ -42,14 +42,14 @@
   background-color: transparent;
   color: var(--primary-btn-color);
   & > div > .kit-btn--svg {
-    background-color: var(--primary-btn-color);
+    fill: var(--primary-btn-color);
   }
   &:hover {
     background-color: var(--hover-btn-color);
     color: var(--secondary-btn-color);
     border: 1px var(--hover-btn-color) solid;
     & > div > .kit-btn--svg {
-      background-color: var(--secondary-btn-color);
+      fill: var(--secondary-btn-color);
     }
   }
 }
@@ -58,16 +58,19 @@
   background-color: transparent;
   color: var(--primary-btn-color);
   & > div > .kit-btn--svg {
-    background-color: var(--primary-btn-color);
+    fill: var(--primary-btn-color);
   }
   &:hover {
     color: var(--hover-btn-color);
     & > div > .kit-btn--svg {
-      background-color: var(--hover-btn-color);
+      fill: var(--hover-btn-color);
     }
   }
   &:active {
     box-shadow: unset;
+  }
+  &.kit-input--icon {
+    color: var(--text-color);
   }
 }
 
@@ -75,8 +78,8 @@
 .kit-btn--small {
   font-size: 12px;
   & > div > .kit-btn--svg {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
   }
   &:not(.kit-btn--icon) > .kit-container--h > .kit-btn--svg {
     width: 16px;
@@ -90,8 +93,8 @@
 .kit-btn--medium {
   font-size: 14px;
   & > div > .kit-btn--svg {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
   }
   &:not(.kit-btn--icon) > .kit-container--h > .kit-btn--svg {
     width: 20px;
@@ -105,8 +108,8 @@
 .kit-btn--large {
   font-size: 16px;
   & > div > .kit-btn--svg {
-    width: 32px;
-    height: 32px;
+    width: 24px;
+    height: 24px;
   }
   &:not(.kit-btn--icon) > .kit-container--h > .kit-btn--svg {
     width: 24px;
@@ -137,11 +140,5 @@
   text-overflow: ellipsis;
 }
 .kit-btn--svg {
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  mask-size: contain;
-  mask-repeat: no-repeat;
-  -webkit-mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
+
 }

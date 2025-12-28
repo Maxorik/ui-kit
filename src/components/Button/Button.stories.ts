@@ -44,15 +44,14 @@ export const IconButton: Story = {
     disabled: false,
     cls: '',
     onClick: () => console.log('IconButton'),
-    iconPath: 'svg-lib/alert-square.svg',
-    labelAlign: 'bottom'
+    iconPath: 'leave'
   },
 };
 
 export const Icon: Story = {
   args: {
     onClick: () => console.log('Icon'),
-    iconPath: 'svg-lib/checkmark-svgrepo-com.svg',
+    iconPath: 'notification',
     type: 'transparent',
     size: 'large',
     corners: 'round',

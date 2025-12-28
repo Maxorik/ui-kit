@@ -1,5 +1,6 @@
 import React, {useState, useId} from 'react';
 import { Button } from "../Button";
+import { Icon } from '../../icons/Icon'
 import './input.scss';
 
 /**
@@ -46,6 +47,9 @@ export interface InputProps {
     /** Ошибки валидации */
     errorText: string;
 
+    /** Обязательно к заполнению */
+    required?: boolean;
+
     /** Ширина в px */
     width?: number;
 
@@ -65,6 +69,7 @@ export const Input = ({
     errorText='',
     live=false,
     isSearch=false,
+    required=false,
     mask,
     width,
     onChange,
@@ -83,7 +88,11 @@ export const Input = ({
         }
 
         if (mask && !mask.test(val.toString())) {
-            setError(errorText || 'Некорректное значение'); // TODO нормальные текстовки
+            if (!val && required) {
+                setError('Обязательно к заполнению');
+            } else {
+                setError(errorText || 'Некорректное значение'); // TODO нормальные текстовки
+            }
         } else {
             setError('');
         }
@@ -97,6 +106,7 @@ export const Input = ({
 
     const clearInput = () => {
         setInternalValue('');
+        required && setError('Обязательно к заполнению');
     }
 
     const handleBlur = (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -121,10 +131,11 @@ export const Input = ({
 
     return (
         <div className="kit-input--wrapper">
-            { label && <div className='w5rem'>
+            { label && <div className='kit-input--label'>
+                { required && <Icon path='required' className='kit-input--required-icon' /> }
                 <label
                     for={ inputId }
-                    className="kit-input--label kit-input-secondary-text"
+                    className="kit-input-secondary-text"
                 >
                     { label }
                 </label>
@@ -149,14 +160,14 @@ export const Input = ({
                 <div className='kit-input--icon-container'>
                     { internalValue && <Button
                         type='transparent'
-                        iconPath='svg-lib/input-svgrepo-com.svg'
+                        iconPath='roundClose'
                         size='small'
                         onClick={clearInput}
                         cls='kit-input--icon'
                     /> }
                     { isSearch && <Button
                         type='transparent'
-                        iconPath='svg-lib/search-svgrepo-com.svg'
+                        iconPath='search'
                         size='small'
                         staticIcon={live}
                         onClick={() => onChange && onChange(internalValue)}

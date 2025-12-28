@@ -14,7 +14,7 @@
     padding: 0 .6rem;
     border: 1px solid var(--text-color);
     outline: none;
-    background-color: #efefef;
+    background-color: #ffffff;
     color: var(--text-color);
     transition: .3s ease;
     &.kit-input--disabled {
@@ -40,7 +40,7 @@
 .kit-input-secondary-text {
     font-size: 12px;
     line-height: 24px;
-    margin-left: .8rem;
+    margin-left: .6rem;
 }
 
 .kit-input::placeholder, .kit-input-bottomtext {
@@ -50,7 +50,19 @@
     color: var(--error-color);
 }
 .kit-input--label {
+    display: flex;
     color: var(--text-color);
+    & > .kit-input-secondary-text {
+        margin-left: .1rem;
+    }
+}
+
+.kit-input--required-icon {
+    width: 20px;
+    height: 20px;
+    & > g > g {
+        fill: var(--error-color);
+    }
 }
 
 .kit-input:focus, .kit-input:hover {
